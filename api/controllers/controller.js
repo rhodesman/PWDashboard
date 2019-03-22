@@ -4,9 +4,10 @@ var mongoose = require('mongoose'),
     Data = mongoose.model('Data');
 
 require("../../config/db");
+var powerWallIP = 'https://10.0.10.220'; //IP address of Powerwall(s) on your local network
 
 exports.stream_live_meters = function (req, res, next) {
-    curlGrab('https://10.0.10.220/api/meters/aggregates?callback=data', function(thisJSON) {
+    curlGrab(powerWallIP + '/api/meters/aggregates?callback=data', function(thisJSON) {
         if (thisJSON != null) {
             res.json(thisJSON);
             //this.close();
@@ -16,7 +17,7 @@ exports.stream_live_meters = function (req, res, next) {
     });
 };
 exports.stream_live_pwsm = function (req, res, next) {
-    curlGrab('https://10.0.10.220/api/sitemaster', function(thisJSON) {
+    curlGrab(powerWallIP + '/api/sitemaster', function(thisJSON) {
         if (thisJSON != null) {
             res.json(thisJSON);
             //this.close();
@@ -26,7 +27,7 @@ exports.stream_live_pwsm = function (req, res, next) {
     });
 };
 exports.stream_live_grid = function (req, res, next) {
-    curlGrab('https://10.0.10.220/api/system_status/grid_status', function(thisJSON) {
+    curlGrab(powerWallIP + '/api/system_status/grid_status', function(thisJSON) {
         if (thisJSON != null) {
             res.json(thisJSON);
             //this.close();
@@ -36,7 +37,7 @@ exports.stream_live_grid = function (req, res, next) {
     });
 };
 exports.stream_live_soe = function (req, res, next) {
-    curlGrab('https://10.0.10.220/api/system_status/soe', function(thisJSON) {
+    curlGrab(powerWallIP + '/api/system_status/soe', function(thisJSON) {
         if (thisJSON != null) {
             res.json(thisJSON);
             //this.close();
@@ -143,5 +144,5 @@ function curlGrab(thisURL, callback) {
         }
     });
     curl.on('error', curl.close.bind(curl));
-    
+
 }
