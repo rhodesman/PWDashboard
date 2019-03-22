@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>Flot | Bootstrap Based Admin Template - Material Design</title>
+    
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+    <link href="/inc/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="/inc/material-design-preloader/md-preloader.css" rel="stylesheet" />
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/themes/all-themes.css" rel="stylesheet" />
+    <link href="/css/dash.css" rel="stylesheet" />
+</head>
+<body class="theme-blue-grey">
+    <div class="page-loader-wrapper">
+        <div class="loader">
+            <div class="md-preloader pl-size-md">
+                <svg viewbox="0 0 75 75">
+                    <circle cx="37.5" cy="37.5" r="33.5" class="pl-red" stroke-width="4" />
+                </svg>
+            </div>
+            <p>Please wait...</p>
+        </div>
+    </div>
+    <nav class="navbar">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
+                <a href="javascript:void(0);" class="bars"></a>
+                <a class="navbar-brand" href="index.html">Home Power Dash</a>
+            </div>
+        </div>
+    </nav>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row clearfix">
+                <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>Realtime Power Tracking</h2>
+                        </div>
+                        <div class="body">
+                            <div id="tracking_chart" class="flot-chart"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>Power Breakdown</h2>
+                        </div>
+                        <div class="body">
+                            <div id="pie_chart" class="flot-chart"></div>
+                            <div class="solar-breakdown">
+                                <div class="progress solar">
+                                    <div class="progress-bar bg-orange" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <h3>Distribution</h3>
+                                <div class="progress battery">
+                                    <div class="progress-bar bg-green" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <div class="progress grid">
+                                    <div class="progress-bar bg-grey" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <div class="progress house">
+                                    <div class="progress-bar bg-light-blue" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div id="house_output" class="info-box-2 bg-blue-grey">
+                        <div class="icon">
+                            <div class="chart chart-bar"></div>
+                        </div>
+                        <div id="house-consumption" class="content">
+                            <div class="text">House Consumption</div>
+                            <div class="number"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div id="battery-level"class="info-box-3 bg-light-green">
+                        <div class="icon">
+                            <div class="chart chart-pie"></div>
+                        </div>
+                        <div class="content">
+                            <div class="text">PowerWall Level</div>
+                            <div class="number"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div id="battery-status" class="info-box-3 bg-light-green">
+                        <div class="icon">
+                            <i class="material-icons"></i>
+                        </div>
+                        <div class="content">
+                            <div class="text">BATTERY</div>
+                            <div class="number"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div id="grid_cost" class="info-box-2 bg-blue-grey">
+                        <div id="cost-output" class="content">
+                            <div class="text">Today's Cost vs. Savings</div>
+                            <div class="number"></div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+    <script src="/inc/jquery.min.js"></script>
+    <script src="/inc/bootstrap/js/bootstrap.js"></script>
+    <script src="/inc/flot-charts/jquery.flot.js"></script>
+    <script src="/inc/flot-charts/jquery.flot.resize.js"></script>
+    <script src="/inc/flot-charts/jquery.flot.pie.js"></script>
+    <script src="/inc/jquery-sparkline/jquery.sparkline.js"></script>
+    <script src="/js/pw-dash.js"></script>
+</body>
+</html>

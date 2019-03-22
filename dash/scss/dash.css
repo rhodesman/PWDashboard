@@ -1,0 +1,20 @@
+.material-icons {
+  width: 60px;
+  height: 60px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center; }
+  .material-icons.battery-full {
+    background-image: url("/img/device/svg/production/ic_battery_full_48px.svg"); }
+  .material-icons.battery-90 {
+    background-image: url("/img/device/svg/production/ic_battery_90_48px.svg"); }
+  .material-icons.battery-80 {
+    background-image: url("/img/device/svg/production/ic_battery_80_48px.svg"); }
+  .material-icons.battery-60 {
+    background-image: url("/img/device/svg/production/ic_battery_60_48px.svg"); }
+  .material-icons.battery-50 {
+    background-image: url("/img/device/svg/production/ic_battery_50_48px.svg"); }
+  .material-icons.battery-30 {
+    background-image: url("/img/device/svg/production/ic_battery_30_48px.svg"); }
+  .material-icons.battery-20 {
+    background-image: url("/img/device/svg/production/ic_battery_20_48px.svg"); }

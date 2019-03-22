@@ -1,0 +1,48 @@
+.material-icons {
+  width: 60px;
+  height: 60px;
+  -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+          mask-size: contain;
+  -webkit-mask-position: center;
+          mask-position: center;
+  background-color: rgba(0, 0, 0, 0.5); }
+  .material-icons.battery-full, .material-icons.animate1 {
+    -webkit-mask-image: url("/img/device/svg/production/ic_battery_full_48px.svg");
+            mask-image: url("/img/device/svg/production/ic_battery_full_48px.svg"); }
+  .material-icons.battery-90, .material-icons.animate2 {
+    -webkit-mask-image: url("/img/device/svg/production/ic_battery_90_48px.svg");
+            mask-image: url("/img/device/svg/production/ic_battery_90_48px.svg"); }
+  .material-icons.battery-80, .material-icons.animate3 {
+    -webkit-mask-image: url("/img/device/svg/production/ic_battery_80_48px.svg");
+            mask-image: url("/img/device/svg/production/ic_battery_80_48px.svg"); }
+  .material-icons.battery-60, .material-icons.animate4 {
+    -webkit-mask-image: url("/img/device/svg/production/ic_battery_60_48px.svg");
+            mask-image: url("/img/device/svg/production/ic_battery_60_48px.svg"); }
+  .material-icons.battery-50, .material-icons.animate5 {
+    -webkit-mask-image: url("/img/device/svg/production/ic_battery_50_48px.svg");
+            mask-image: url("/img/device/svg/production/ic_battery_50_48px.svg"); }
+  .material-icons.battery-30, .material-icons.animate6 {
+    -webkit-mask-image: url("/img/device/svg/production/ic_battery_30_48px.svg");
+            mask-image: url("/img/device/svg/production/ic_battery_30_48px.svg"); }
+  .material-icons.battery-20, .material-icons.animate7 {
+    -webkit-mask-image: url("/img/device/svg/production/ic_battery_20_48px.svg");
+            mask-image: url("/img/device/svg/production/ic_battery_20_48px.svg"); }
+  .material-icons.battery_charging {
+    -webkit-mask-image: url("/img/device/svg/production/ic_battery_charging_full_48px.svg");
+            mask-image: url("/img/device/svg/production/ic_battery_charging_full_48px.svg"); }
+
+.card .header h2 {
+  color: #ccc; }
+
+.solar-breakdown h3 {
+  color: #ccc;
+  font-weight: normal;
+  font-size: 16px;
+  opacity: 0.5; }
+
+#grid_cost #cost-output .number {
+  font-size: 16px;
+  margin-top: 3px; }
+/*# sourceMappingURL=dash.css.map */
