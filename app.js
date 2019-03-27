@@ -62,13 +62,14 @@ function storeData() {
                     return console.error('upload failed:', error);
                 }else {
                     console.log('Upload successful!  Server responded with:', body);
+                    data = null;
                 }
             });
         } else {
             console.log("nothing here");
         }
     });
-    
+
 }
 function apiConnect(thisURL, callback) {
     var thisData;
