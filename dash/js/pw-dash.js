@@ -133,6 +133,7 @@ function initCharts() {
             height: '50px',
             sliceColors: ['rgba(0,0,0,0.10)', 'rgba(255,255,255,0.25)']
         });
+        data = null;
     });
 }
 function buildChart() {
@@ -190,6 +191,7 @@ function buildChart() {
         piePower(current); // Donut-pie chart of power breakdown
         batteryStatus(current); // What is the battery currently doing
         //houseOutput(chartArray, startPoints); // I forgot what this does, probably should stop drinking & coding
+        results = null;
     });
     function plotChart(chartData) {
         $('.output.solar').text("Solar: " + current.solar.toFixed(2) + "kW");
@@ -265,6 +267,7 @@ function batteryStatus(data) {
         }
         $('#battery-status .material-icons').addClass("battery-discharging");
     }
+    data = null;
 }
 function houseOutput(data, points) {
     data = data.house;
@@ -374,6 +377,7 @@ function piePower(data) {
     function labelFormatter(label, series) {
         return '<div style="font-size:8pt; text-align:center; padding:2px; color:white;">' + label + '<br/>' + Math.round(series.percent) + '%</div>';
     }
+    data = null;
 }
 //// END Breakdown Charts \\\\
 
@@ -424,7 +428,7 @@ function getTodayData(callback) {
             wattHours[source].whr = wattHours[source].whr / 1000;
             return wattHours[source].whr;
         }
-
+        data = null;
     });
 
     if(callback != null) {
