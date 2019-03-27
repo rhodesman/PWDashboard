@@ -5,14 +5,12 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <title>Flot | Bootstrap Based Admin Template - Material Design</title>
-    
+
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
     <link href="/inc/bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="/inc/material-design-preloader/md-preloader.css" rel="stylesheet" />
-    <link href="/css/style.css" rel="stylesheet">
-    <link href="/css/themes/all-themes.css" rel="stylesheet" />
     <link href="/css/dash.css" rel="stylesheet" />
 </head>
 <body class="theme-blue-grey">
@@ -41,7 +39,10 @@
                 <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
                     <div class="card">
                         <div class="header">
-                            <h2>Realtime Power Tracking</h2>
+                            <h2>Realtime Tracking</h2>
+                            <span class="output solar"></span>
+                            <span class="output grid"></span>
+                            <span class="output batt"></span>
                         </div>
                         <div class="body">
                             <div id="tracking_chart" class="flot-chart"></div>
@@ -51,7 +52,7 @@
                 <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
                     <div class="card">
                         <div class="header">
-                            <h2>Power Breakdown</h2>
+                            <h2>Breakdown</h2>
                         </div>
                         <div class="body">
                             <div id="pie_chart" class="flot-chart"></div>
@@ -76,10 +77,8 @@
             </div>
             <div class="row clearfix">
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <div id="house_output" class="info-box-2 bg-blue-grey">
-                        <div class="icon">
-                            <div class="chart chart-bar"></div>
-                        </div>
+                    <div id="house_output" class="info-box ">
+
                         <div id="house-consumption" class="content">
                             <div class="text">House Consumption</div>
                             <div class="number"></div>
@@ -87,7 +86,7 @@
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <div id="battery-level"class="info-box-3 bg-light-green">
+                    <div id="battery-level"class="info-box-3">
                         <div class="icon">
                             <div class="chart chart-pie"></div>
                         </div>
@@ -98,7 +97,7 @@
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <div id="battery-status" class="info-box-3 bg-light-green">
+                    <div id="battery-status" class="info-box-3">
                         <div class="icon">
                             <i class="material-icons"></i>
                         </div>
@@ -109,14 +108,14 @@
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <div id="grid_cost" class="info-box-2 bg-blue-grey">
+                    <div id="grid_cost" class="info-box ">
                         <div id="cost-output" class="content">
-                            <div class="text">Today's Cost vs. Savings</div>
-                            <div class="number"></div>
+                            <div class="cost"></div>
+                            <div class="savings"></div>
                         </div>
                     </div>
                 </div>
-                
+
             </div>
         </div>
     </section>

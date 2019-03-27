@@ -18,7 +18,7 @@
      * This should be an address the client accessing the UI can access
      * Example: 127.0.0.1:#{port address}/#{folder set in routes.js}
     **************/
-    var nodeAPIaddr = 'http://127.0.0.1:3301/api'; 
+    var nodeAPIaddr = 'http://10.0.10.202:3301/api';
 
 //// END Global Variables \\\\
 
@@ -28,8 +28,8 @@ $(function () {
     }, 50);
 
     // Set Intervals to page API for new Data, 1000 = 1 second
-    setInterval(buildChart, 1000);
-    setInterval(getTodayData, 1000);
+    setInterval(buildChart, 1500);
+    setInterval(getTodayData, 30000);
 
     // Changes donut chart when the windowsize changes
     $(window).resize(reDraw());
@@ -47,7 +47,7 @@ function getData(dataType, callback) {
      * via your api route settings
     ****/
     var dataStreams = nodeAPIaddr;
-    if (dataType == null) {
+    if (dataType == '') {
         $.getJSON(dataStreams, function (returndata) {
             callback(returndata);
         });
@@ -72,14 +72,40 @@ function streamPWApi(dataType, callback) {
         pwAPIAddr + dataType
     ];
     if (dataType == 'meters') {
-        $.getJSON(dataStreams, function (returndata) {
-            var houseOutput = returndata.load.instant_power / 1000;
-            $('#house-consumption .number').text(houseOutput.toFixed(3) + " kW");
-            callback(returndata);
+      fetch(dataStreams)
+        .then(
+          function(response) {
+            if (response.status !== 200) {
+              console.log('Looks like there was a problem. Status Code: ' +
+                response.status);
+              return;
+            }
+
+            // Examine the text in the response
+            response.json().then(function(returndata) {
+              var houseOutput = returndata.load.instant_power / 1000;
+              $('#house-consumption .number').text(houseOutput.toFixed(3) + " kW");
+              callback(returndata);
+            });
+          }
+        ).catch(function(err) {
+          console.log('Fetch Error :-S', err);
         });
     } else {
-        $.getJSON(dataStreams, function (returndata) {
-            callback(returndata);
+      fetch(dataStreams)
+        .then(
+          function(response) {
+            if (response.status !== 200) {
+              console.log('Looks like there was a problem. Status Code: ' +
+                response.status);
+              return;
+            }
+            response.json().then(function(returndata) {
+              callback(returndata);
+            });
+          }
+        ).catch(function(err) {
+          console.log('Fetch Error :-S', err);
         });
     }
 }
@@ -105,7 +131,7 @@ function initCharts() {
         $('.chart.chart-pie').sparkline(undefined, {
             type: 'pie',
             height: '50px',
-            sliceColors: ['rgba(0,0,0,0.10)', 'rgba(0,0,0,0.25)']
+            sliceColors: ['rgba(0,0,0,0.10)', 'rgba(255,255,255,0.25)']
         });
     });
 }
@@ -163,22 +189,25 @@ function buildChart() {
         plotChart(chartArray); // main line chart
         piePower(current); // Donut-pie chart of power breakdown
         batteryStatus(current); // What is the battery currently doing
-        houseOutput(chartArray, startPoints); // I forgot what this does, probably should stop drinking & coding
+        //houseOutput(chartArray, startPoints); // I forgot what this does, probably should stop drinking & coding
     });
     function plotChart(chartData) {
+        $('.output.solar').text("Solar: " + current.solar.toFixed(2) + "kW");
+        $('.output.grid').text("Grid: " + current.grid.toFixed(2) + "kW");
+        $('.output.batt').text("PWall: " + current.battery.toFixed(2) + "kW");
         var trackingData = [{
                 data: chartData.battery,
-                label: 'PWall ' + current.battery.toFixed(2) + "kW",
+                //label: 'PWall ' + current.battery.toFixed(2) + "kW",
                 color: color.battery
             },
             {
                 data: chartData.grid,
-                label: 'Grid ' + current.grid.toFixed(2) + "kW",
+                //label: 'Grid ' + current.grid.toFixed(2) + "kW",
                 color: color.grid
             },
             {
                 data: chartData.solar,
-                label: 'Solar ' + current.solar.toFixed(2) + "kW",
+                //label: 'Solar ' + current.solar.toFixed(2) + "kW",
                 color: color.solar
             }
         ];
@@ -186,19 +215,25 @@ function buildChart() {
             crosshair: {
                 mode: 'x'
             },
+            lines : {
+              fill:0.05
+            },
             grid: {
                 hoverable: true,
                 autoHighlight: false,
-                borderColor: '#474747',
-                borderWidth: 1,
-                tickColor: '#474747'
+                borderWidth: 0,
+                tickColor: '#0d0d0d'
             },
             yaxis: {
-                color: '#ccc',
+                color: '#0d0d0d',
                 min: minValue,
                 max: maxValue
-            }
+            },
+            xaxis: {
+              tickLength: 0
+             }
         });
+
         var legends = $('#tracking_chart .legendLabel');
         legends.each(function () {
             $(this).css('width', $(this).width());
@@ -353,20 +388,12 @@ function getTodayData(callback) {
         house: {sum: 0,count: 0,hours: 0,Whr: 0}
     }; // Object of todays calculates watt hours
 
-    getData('/today', function(data) {
-        var todayDate = new Date();
-        //var thisHour = todayDate.getHours();
-        todayDate = todayDate.getDate();
+    getData('', function(data) {
         for(n=0;n < data.length;n++) {
-            var dbDate = new Date(data[n].Created_date);
-            var dbdataDay = dbDate.getDate();
-
-            if (todayDate == dbdataDay) {
-                wattHours.solar.sum = wattHours.solar.sum + Number(data[n].solar);
-                wattHours.house.sum = wattHours.house.sum + Number(data[n].house);
-                wattHours.grid.sum = wattHours.grid.sum + Number(data[n].grid);
-                wattHours.battery.sum = wattHours.battery.sum + Number(data[n].battery);
-            }
+            wattHours.solar.sum = wattHours.solar.sum + Number(data[n].solar);
+            wattHours.house.sum = wattHours.house.sum + Number(data[n].house);
+            wattHours.grid.sum = wattHours.grid.sum + Number(data[n].grid);
+            wattHours.battery.sum = wattHours.battery.sum + Number(data[n].battery);
             if (Number(data[n].solar) > 0) {
                 wattHours.solar.count++;
             }
@@ -388,7 +415,8 @@ function getTodayData(callback) {
         var houseSavings = (housekWh - gridkWh) * gridCost;
         var gridDebit = gridCost * gridkWh;
 
-        $('#cost-output .number').text("Grid Cost: $" + gridDebit.toFixed(2) + "   Savings: $" + houseSavings.toFixed(2));
+        $('#cost-output .cost').text("Cost: $" + gridDebit.toFixed(2));
+        $('#cost-output .savings').text("Savings: $" + houseSavings.toFixed(2));
 
         function whCalc(source) {
             wattHours[source].whr = wattHours[source].sum / wattHours[source].count;

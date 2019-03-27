@@ -1,12 +1,27 @@
+//Colors
+$battery:#8BC34A;
+$house: #607D8B;
+$solar: #ffa600;
+$grid: #adadad;
+
+
+@import '_mixins';
+@import '_variables';
+@import '_helpers.scss';
+@import '_general.scss';
+@import '_card.scss';
+@import '_infobox.scss';
+@import '_charts.scss';
+@import 'theme-blue-grey.scss';
+
 .material-icons {
     width:60px;
     height:60px;
-
     mask-repeat: no-repeat;
     mask-size: contain;
     mask-position: center;
-    background-color: rgba(0,0,0,0.5);
-    &.battery-full, 
+    background-color: rgba(255,255,255,0.25);
+    &.battery-full,
     &.animate1 {
         mask-image: url('/img/device/svg/production/ic_battery_full_48px.svg');
     }
@@ -38,8 +53,27 @@
         mask-image: url('/img/device/svg/production/ic_battery_charging_full_48px.svg');
     }
 }
-.card .header h2 {
-    color: #ccc;
+.card {
+  .header {
+    h2 {
+      color: #ccc;
+      display:inline-block;
+      //min-width: 35%; //for later....
+    }
+    .output {
+      float:right;
+      padding:0 15px;
+      &.solar {
+        color:$solar;
+      }
+      &.batt {
+        color:$battery;
+      }
+      &.grid {
+        color: $grid;
+      }
+    }
+  }
 }
 .solar-breakdown {
     h3 {
@@ -56,4 +90,33 @@
             margin-top: 3px;
         }
     }
+}
+div[class^="info-box"] {
+  background-color: rgba(0,0,0,0.1);
+  border-radius: 6px;
+  .content {
+      .text {
+          color: #555;
+      }
+
+      .number {
+          color: #a1a1a1;
+      }
+  }
+}
+#cost-output {
+  padding-top: 18px;
+  padding-left: 20px;
+  > div {
+    color: #a1a1a1;
+    font-weight: normal;
+    font-size: 16px;
+  }
+}
+#battery-status {
+  .content {
+    .number {
+      //color: $battery;
+    }
+  }
 }
