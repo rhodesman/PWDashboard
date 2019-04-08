@@ -63,6 +63,7 @@ function storeData() {
                 }else {
                     console.log('Upload successful!  Server responded with:', body);
                     data = null;
+                    return;
                 }
             });
         } else {
@@ -83,7 +84,7 @@ function apiConnect(thisURL, callback) {
     curl.on('end', function (statusCode, body, headers) {
         thisData = JSON.parse(body);
         if (statusCode == 200) {
-            callback(thisData);
+            return( callback(thisData) );
         } else {
             console.log('ERROR: ' + statusCode + headers + body);
             return null;

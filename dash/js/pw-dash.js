@@ -49,12 +49,12 @@ function getData(dataType, callback) {
     var dataStreams = nodeAPIaddr;
     if (dataType == '') {
         $.getJSON(dataStreams, function (returndata) {
-            callback(returndata);
+            return( callback(returndata) );
         });
     }else {
         dataStreams = [dataStreams + dataType];
         $.getJSON(dataStreams, function (returndata) {
-            callback(returndata);
+            return( callback(returndata) );
         });
     }
 }
@@ -85,7 +85,7 @@ function streamPWApi(dataType, callback) {
             response.json().then(function(returndata) {
               var houseOutput = returndata.load.instant_power / 1000;
               $('#house-consumption .number').text(houseOutput.toFixed(3) + " kW");
-              callback(returndata);
+              return( callback(returndata) );
             });
           }
         ).catch(function(err) {
@@ -101,7 +101,7 @@ function streamPWApi(dataType, callback) {
               return;
             }
             response.json().then(function(returndata) {
-              callback(returndata);
+              return( callback(returndata) );
             });
           }
         ).catch(function(err) {
@@ -194,9 +194,9 @@ function buildChart() {
         results = null;
     });
     function plotChart(chartData) {
-        $('.output.solar').text("Solar: " + current.solar.toFixed(2) + "kW");
-        $('.output.grid').text("Grid: " + current.grid.toFixed(2) + "kW");
-        $('.output.batt').text("PWall: " + current.battery.toFixed(2) + "kW");
+        $('.output .solar').text("Solar: " + current.solar.toFixed(2) + "kW");
+        $('.output .grid').text("Grid: " + current.grid.toFixed(2) + "kW");
+        $('.output .batt').text("PWall: " + current.battery.toFixed(2) + "kW");
         var trackingData = [{
                 data: chartData.battery,
                 //label: 'PWall ' + current.battery.toFixed(2) + "kW",
@@ -432,6 +432,8 @@ function getTodayData(callback) {
     });
 
     if(callback != null) {
-        callback();
+        return( callback() );
+    }else {
+      return;
     }
 }

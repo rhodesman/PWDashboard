@@ -10,7 +10,7 @@ exports.stream_live_meters = function (req, res, next) {
     curlGrab(powerWallIP + '/api/meters/aggregates?callback=data', function(thisJSON) {
         if (thisJSON != null) {
             res.json(thisJSON);
-            //this.close();
+
         } else {
             res.json('204', '', '');
         }
@@ -20,7 +20,7 @@ exports.stream_live_pwsm = function (req, res, next) {
     curlGrab(powerWallIP + '/api/sitemaster', function(thisJSON) {
         if (thisJSON != null) {
             res.json(thisJSON);
-            //this.close();
+
         } else {
             res.json('204', '', '');
         }
@@ -30,7 +30,7 @@ exports.stream_live_grid = function (req, res, next) {
     curlGrab(powerWallIP + '/api/system_status/grid_status', function(thisJSON) {
         if (thisJSON != null) {
             res.json(thisJSON);
-            //this.close();
+
         } else {
             res.json('204', '', '');
         }
@@ -40,7 +40,7 @@ exports.stream_live_soe = function (req, res, next) {
     curlGrab(powerWallIP + '/api/system_status/soe', function(thisJSON) {
         if (thisJSON != null) {
             res.json(thisJSON);
-            //this.close();
+
         } else {
             res.json('204', '', '');
         }
@@ -74,6 +74,7 @@ exports.read_some_data = function (req, res, next) {
         if (err)
             res.send(err);
         res.json(data);
+        return;
     });
 };
 exports.list_today_data = function (req, res, next) {
@@ -87,6 +88,7 @@ exports.list_today_data = function (req, res, next) {
         if (err)
             res.send(err);
         res.json(data);
+        return;
     });
 };
 exports.read_data = function (req, res, next) {
@@ -94,6 +96,7 @@ exports.read_data = function (req, res, next) {
         if (err)
             res.send(err);
         res.json(data);
+        return;
     });
 };
 exports.update_data = function (req, res, next) {
@@ -106,6 +109,7 @@ exports.update_data = function (req, res, next) {
             if (err)
                 res.send(err);
             res.json(data);
+            return;
         });
 };
 exports.delete_data = function (req, res, next) {
@@ -118,6 +122,7 @@ exports.delete_data = function (req, res, next) {
         res.json({
             message: 'Data successfully deleted'
         });
+        return;
     });
 };
 
@@ -132,7 +137,7 @@ function curlGrab(thisURL, callback) {
     curl.on('end', function (statusCode, body, headers) {
         var thisData = JSON.parse(body);
         if (statusCode == 200) {
-            callback(thisData);
+            return( callback(thisData) );
         } else {
             var thisError = {
                 "starusCode": statusCode,
