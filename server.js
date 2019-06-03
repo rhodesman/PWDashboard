@@ -12,6 +12,8 @@ const app = express();
 
 const port = process.env.PORT || 3301;
 
+var powerWallIP = '10.0.10.220';
+
 //Express Server Settings
 app.use(function (req, res, next) {
     //Allow Any system to access your API (change this to whatever you need)
@@ -41,7 +43,7 @@ app.listen(port, () => {
 });
 
 function storeData() {
-    var powerWallURL = 'https://10.0.10.220/api/meters/aggregates?callback=data';
+    var powerWallURL = `https://${powerWallIP}/api/meters/aggregates?callback=data`;
     apiConnect(powerWallURL, function(data) {
         if (data != null) {
             var options = {
@@ -74,7 +76,7 @@ function storeData() {
     batteryData();
 }
 function batteryData() {
-  var batteryLevel = 'https://10.0.10.220/api/system_status/soe';
+  var batteryLevel = `https://${powerWallIP}/api/system_status/soe`;
   apiConnect(batteryLevel, function(data) {
     if (data != null) {
         var options = {
