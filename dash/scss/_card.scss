@@ -120,7 +120,54 @@
         font-size: 14px;
         color: #555;
         padding: 20px;
-
+        position: relative;
+        h3 {
+          &.date {
+            margin: 0;
+            position: absolute;
+            top:4px;
+            left:50%;
+            transform: translateX(-50%);
+            font-size: 1.8rem;
+          }
+        }
+        button {
+          display: none;
+          &.showme {
+            display: block;
+          }
+          &.day {
+            position: absolute;
+            top:50%;
+            background: none;
+            border:none;
+            padding: 5px;
+            &:before {
+              display: block;
+              font-size: 14px;
+              color: #fff;
+            }
+            &.prev {
+              left:0;
+              &[data_day="6"] {
+                opacity:0.2;
+              }
+              &:before {
+                content: '<';
+              }
+            }
+            &.next {
+              right: 0;
+              &[data_day="0"] {
+                opacity:0.2;
+                
+              }
+              &:before {
+                content: '>';
+              }
+            }
+          }
+        }
         @for $i from 1 through 12 {
             .col-xs-#{$i},
             .col-sm-#{$i},

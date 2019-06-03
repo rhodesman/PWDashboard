@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <title>Flot | Bootstrap Based Admin Template - Material Design</title>
+    <title>Home Power Dashboard</title>
 
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
@@ -37,15 +37,36 @@
         <div class="container-fluid">
             <div class="row clearfix">
                 <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
-                    <div class="card">
+                    <div class="card realtime">
                         <div class="header">
                             <h2>Realtime Tracking</h2>
-                            <span class="output solar"></span>
-                            <span class="output grid"></span>
-                            <span class="output batt"></span>
+                            <div class="output">
+                              <span class="solar"></span>
+                              <span class="grid"></span>
+                              <span class="batt"></span>
+                            </div>
+                            <ul class="header-dropdown m-r--5">
+                                <li class="dropdown">
+                                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                        <i class="material-icons">more_vert</i>
+                                    </a>
+                                    <ul class="dropdown-menu pull-right">
+                                        <li id="livedata" class="active"><a href="#data_live">Live View</a></li>
+                                        <li id="daydata"><a href="#data_day" >Last 24 hours</a></li>
+                                        <li id="weekdata"><a href="#data_week">Last 7 days</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
                         </div>
                         <div class="body">
-                            <div id="tracking_chart" class="flot-chart"></div>
+                          <h3 class="date"></h3>
+                          <button class="day prev"></button>
+                          <button class="day next"></button>
+                            <div id="live_chart" class="flot-chart showme"></div>
+                            <div id="day_chart" class="flot-chart hideme"></div>
+                            <div id="week_chart" class="flot-chart hideme">
+
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -124,7 +145,10 @@
     <script src="/inc/flot-charts/jquery.flot.js"></script>
     <script src="/inc/flot-charts/jquery.flot.resize.js"></script>
     <script src="/inc/flot-charts/jquery.flot.pie.js"></script>
+    <script src="/inc/flot-charts/jquery.flot.orderBars.js"></script>
+    <script src="/inc/flot-charts/jquery.flot.time.js"></script>
     <script src="/inc/jquery-sparkline/jquery.sparkline.js"></script>
-    <script src="/js/pw-dash.js"></script>
+    <script src="/js/pw-dash-live.js"></script>
+    <script src="/js/pw-dash-hist.js"></script>
 </body>
 </html>

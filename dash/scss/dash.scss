@@ -14,7 +14,19 @@ $grid: #adadad;
 @import '_charts.scss';
 @import 'theme-blue-grey.scss';
 
-.material-icons {
+.realtime {
+  .flot-chart {
+    display:none;
+    opacity:0;
+  }
+  .showme {
+    display: block;
+    opacity:1;
+  }
+}
+
+
+#battery-status .material-icons {
     width:60px;
     height:60px;
     mask-repeat: no-repeat;
@@ -61,15 +73,21 @@ $grid: #adadad;
       //min-width: 35%; //for later....
     }
     .output {
-      float:right;
-      padding:0 15px;
-      &.solar {
+      //float:right;
+      position: absolute;
+      right:80px;
+      display:inline-block;
+      span {
+        padding:0 15px;
+      }
+
+      .solar {
         color:$solar;
       }
-      &.batt {
+      .batt {
         color:$battery;
       }
-      &.grid {
+      .grid {
         color: $grid;
       }
     }

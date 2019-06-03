@@ -1511,7 +1511,42 @@ section.content {
   .card .body {
     font-size: 14px;
     color: #555;
-    padding: 20px; }
+    padding: 20px;
+    position: relative; }
+    .card .body h3.date {
+      margin: 0;
+      position: absolute;
+      top: 4px;
+      left: 50%;
+      -webkit-transform: translateX(-50%);
+              transform: translateX(-50%);
+      font-size: 1.8rem; }
+    .card .body button {
+      display: none; }
+      .card .body button.showme {
+        display: block; }
+      .card .body button.day {
+        position: absolute;
+        top: 50%;
+        background: none;
+        border: none;
+        padding: 5px; }
+        .card .body button.day:before {
+          display: block;
+          font-size: 14px;
+          color: #fff; }
+        .card .body button.day.prev {
+          left: 0; }
+          .card .body button.day.prev[data_day="6"] {
+            opacity: 0.2; }
+          .card .body button.day.prev:before {
+            content: '<'; }
+        .card .body button.day.next {
+          right: 0; }
+          .card .body button.day.next[data_day="0"] {
+            opacity: 0.2; }
+          .card .body button.day.next:before {
+            content: '>'; }
     .card .body .col-xs-1,
     .card .body .col-sm-1,
     .card .body .col-md-1,
@@ -1747,7 +1782,15 @@ section.content {
   .theme-blue-grey .sidebar .legal .copyright a {
     color: #607D8B !important; }
 
-.material-icons {
+.realtime .flot-chart {
+  display: none;
+  opacity: 0; }
+
+.realtime .showme {
+  display: block;
+  opacity: 1; }
+
+#battery-status .material-icons {
   width: 60px;
   height: 60px;
   -webkit-mask-repeat: no-repeat;
@@ -1757,28 +1800,28 @@ section.content {
   -webkit-mask-position: center;
           mask-position: center;
   background-color: rgba(255, 255, 255, 0.25); }
-  .material-icons.battery-full, .material-icons.animate1 {
+  #battery-status .material-icons.battery-full, #battery-status .material-icons.animate1 {
     -webkit-mask-image: url("/img/device/svg/production/ic_battery_full_48px.svg");
             mask-image: url("/img/device/svg/production/ic_battery_full_48px.svg"); }
-  .material-icons.battery-90, .material-icons.animate2 {
+  #battery-status .material-icons.battery-90, #battery-status .material-icons.animate2 {
     -webkit-mask-image: url("/img/device/svg/production/ic_battery_90_48px.svg");
             mask-image: url("/img/device/svg/production/ic_battery_90_48px.svg"); }
-  .material-icons.battery-80, .material-icons.animate3 {
+  #battery-status .material-icons.battery-80, #battery-status .material-icons.animate3 {
     -webkit-mask-image: url("/img/device/svg/production/ic_battery_80_48px.svg");
             mask-image: url("/img/device/svg/production/ic_battery_80_48px.svg"); }
-  .material-icons.battery-60, .material-icons.animate4 {
+  #battery-status .material-icons.battery-60, #battery-status .material-icons.animate4 {
     -webkit-mask-image: url("/img/device/svg/production/ic_battery_60_48px.svg");
             mask-image: url("/img/device/svg/production/ic_battery_60_48px.svg"); }
-  .material-icons.battery-50, .material-icons.animate5 {
+  #battery-status .material-icons.battery-50, #battery-status .material-icons.animate5 {
     -webkit-mask-image: url("/img/device/svg/production/ic_battery_50_48px.svg");
             mask-image: url("/img/device/svg/production/ic_battery_50_48px.svg"); }
-  .material-icons.battery-30, .material-icons.animate6 {
+  #battery-status .material-icons.battery-30, #battery-status .material-icons.animate6 {
     -webkit-mask-image: url("/img/device/svg/production/ic_battery_30_48px.svg");
             mask-image: url("/img/device/svg/production/ic_battery_30_48px.svg"); }
-  .material-icons.battery-20, .material-icons.animate7 {
+  #battery-status .material-icons.battery-20, #battery-status .material-icons.animate7 {
     -webkit-mask-image: url("/img/device/svg/production/ic_battery_20_48px.svg");
             mask-image: url("/img/device/svg/production/ic_battery_20_48px.svg"); }
-  .material-icons.battery_charging {
+  #battery-status .material-icons.battery_charging {
     -webkit-mask-image: url("/img/device/svg/production/ic_battery_charging_full_48px.svg");
             mask-image: url("/img/device/svg/production/ic_battery_charging_full_48px.svg"); }
 
@@ -1787,13 +1830,16 @@ section.content {
   display: inline-block; }
 
 .card .header .output {
-  float: right;
-  padding: 0 15px; }
-  .card .header .output.solar {
+  position: absolute;
+  right: 80px;
+  display: inline-block; }
+  .card .header .output span {
+    padding: 0 15px; }
+  .card .header .output .solar {
     color: #ffa600; }
-  .card .header .output.batt {
+  .card .header .output .batt {
     color: #8BC34A; }
-  .card .header .output.grid {
+  .card .header .output .grid {
     color: #adadad; }
 
 .solar-breakdown h3 {
